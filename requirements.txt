@@ -1,0 +1,9 @@
+numpy
+tqdm
+tensorflow
+torch==2.1.2
+transformers==4.28.1
+pillow
+pandas
+coverage
+future
