@@ -1,0 +1,11 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# data and model ckpts 
+# third_party/
+node_modules/
+# resource/
+
+package-lock.json
