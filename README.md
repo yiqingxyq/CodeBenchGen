@@ -236,14 +236,15 @@ We provide the code for inference with both open-source models and openAI APIs.
 python evaluation/inference.py \
   --model_name deepseek-ai/deepseek-coder-7b-instruct-v1.5 \     # the model to evaluate. Can be an open-source model or an openAI API
   --model_backend vllm \                                         # can be vllm, hf, openai
-  --data_path ${final_dataset_DIR}/aug_test_set_final_round${MAX_ROUND}.json \   # the path to the .json data file
-  --output_path "results/generation_outputs.json"                                # the path to store the output file
+  --data_path ExecCSN_dataset/test_set_final_round3.json \       # the path to the .json data file
+  --output_path "results/ExecCSN_generation_outputs.json"                # the path to store the output file
 ```
+You can also evaluate models on your own dataset, such as `--data_path ${final_dataset_DIR}/aug_test_set_final_round${MAX_ROUND}.json`.
 
 Then we post-process the generation outputs:
 ```
 python evaluation/postprocess_code.py \
-  --result_file "results/generation_outputs.json" \     # the path to store the output file
+  --result_file "results/ExecCSN_generation_outputs.json" \     # the path to store the output file
   --out_key gen_masked_method_no_test                   # the processed results will be saved as this key
 ```
 
@@ -253,10 +254,10 @@ Finally, evaluate with Pass@k:
 ```
 # Execute the code in the docker
 python evaluation/execution_passk.py \
-  --data_file ${final_dataset_DIR}/aug_test_set_final_round${MAX_ROUND}.json \   # the path to the .json data file
-  --hypo_file "results/generation_outputs.json" \   # the file with generation outputs
+  --data_file ExecCSN_dataset/test_set_final_round3.json \   # the path to the .json data file
+  --hypo_file "results/ExecCSN_generation_outputs.json" \   # the file with generation outputs
   --code_gen_model deepseek7B \                     # the save name of the evaluated model
-  --output_file "results/execution_results.json"    # the evaluation results will be saved here
+  --output_file "results/ExecCSN_execution_results.json"    # the evaluation results will be saved here
 ```
 
 
