@@ -225,8 +225,10 @@ The additional tests will be saved to a key `new_test_code`.
 
 &nbsp;
  <a id="evaluation"></a>
-## Evaluation with Exec-CSN (TBD)
+## Evaluation with Exec-CSN
 You can evaluate code generation models on Exec-CSN or your new dataset. 
+
+The datafile of Exec-CSN is `ExecCSN_dataset/test_set_final_round3.json` and the commands to setup the docker environment are stored in `ExecCSN_dataset/test_set_final_commands_round3.sh`
 
 #### Inference 
 We provide the code for inference with both open-source models and openAI APIs.
