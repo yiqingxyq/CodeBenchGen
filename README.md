@@ -95,7 +95,7 @@ python get_CSN_input/random_sample.py --input_file "python_test_0.jsonl" --outpu
 python get_CSN_input/download_context.py --input_file "python_test_0.sampled.json" --output_file "cleaned_python_test.json"
 
 # Detect banned keywords in the list we provide
-python detect_banned_keywords.py --data_file "cleaned_python_test.json"
+python get_CSN_input/detect_banned_keywords.py --data_file "cleaned_python_test.json"
 
 ```
 The input data will be stored in `${dataset_generation_DIR}/cleaned_python_test.json`.
