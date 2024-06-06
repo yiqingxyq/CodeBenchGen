@@ -15,7 +15,7 @@ CACHE_DIR = os.environ.get("CACHE_DIR")
 dataset_generation_DIR = os.environ.get("dataset_generation_DIR")
 
 openai.api_base = "https://api.openai.com/v1"
-openai.api_key = os.environ.get("OPENAI_API_KEY_OPENAI")
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 API_NAME = "gpt-4-turbo-2024-04-09"
 # API_NAME = "gpt-3.5-turbo-0125"
 

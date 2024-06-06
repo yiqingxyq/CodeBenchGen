@@ -17,7 +17,7 @@ CACHE_DIR = os.environ.get("CACHE_DIR")
 dataset_generation_DIR = os.environ.get("dataset_generation_DIR")
 
 openai.api_base = "https://api.openai.com/v1"
-openai.api_key = os.environ.get("OPENAI_API_KEY_OPENAI")
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 API_NAME = "gpt-4-turbo-2024-04-09"
 
 prompt_template = "You are preparing an interview for software engineers. The interviewees are going to complete the __FUNCTION_NAME__ function. Write a clear instruction describing this function in around 45 words, which includes the functionality, the input arguments (if any), and the outputs (if any). Do not reveal test cases. Generate the instruction with the following format:\n```\nFunctionality: ...\nInputs: ...\nOutputs: ...\n```.\n\n__CODE__\n\n"
