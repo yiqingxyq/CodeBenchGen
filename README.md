@@ -80,12 +80,14 @@ To create a benchmark, you'll need to prepare a set of code snippets and select 
 You should set the directory of the input file in `setup.sh`. The input should be a .JSON file containing a list of dictionaries. Each dictionary is of the following format:
 ```
 {
-  "context":     the content of the code, containing the target code and its context,
-  "func_name":   the name of the focal method (the target code),
+  "func_name":   the name of the focal method (the target code) (e.g., "_make_masks", "OcelotDataset.get_input"),
   "idx":         the index of this example,
+  "func_code":   the content of the focal method (e.g., "def _make_masks(slide_path, mask_path):\n..."),
+  "context":     the content of the code, containing the target code and its context. If there are multiple pieces of context, split them using coding blocks: ```\n...```,
 }
 ```
 
+#### (Optional-1) Obtain CodeBenchGen inputs by sampling from CodeSearchNet
 Optionally, you can also create the input data from the CodeSearchNet dataset. Assume you want to sample the input data from the test dataset named `python_test_0.jsonl`, you can run:
 ```
 # Randomly select k examples
@@ -99,6 +101,17 @@ python get_CSN_input/detect_banned_keywords.py --data_file "cleaned_python_test.
 
 ```
 The input data will be stored in `${dataset_generation_DIR}/cleaned_python_test.json`.
+
+#### (Optional-2) Obtain CodeBenchGen inputs by extracting the functions and context with R2E's code
+Another option is to (1) scrape repository names using the GitHub API, (2) clone the repos, (3) extract functions using R2E's code, and (4) obtain context for each function with R2E's code.
+
+We provide the scripts to perform all the steps:
+```
+cd get_github_input
+scrape_repos.sh
+bash obtain_functions.sh
+```
+Using the default arguments, we obtain 1000 recent repos from GitHub (ranked by recent updates), and sample 50. We then extract the functions and methods (i.e., standalone functions and class functions), sample 10 standalone functions and 10 class functions for each repo, and obtain the dependent code for each function.
 
 &nbsp;
 <a id="codebenchgen-step1"></a>
