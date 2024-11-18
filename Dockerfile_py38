@@ -1,5 +1,5 @@
 # Start from python
-FROM python:3.11.3
+FROM python:3.8.16
 
 # Install
 RUN apt-get update
@@ -12,8 +12,8 @@ WORKDIR /home/user
 COPY . /home/user/CodeBenchGen
 
 # Install the required packages
-# RUN python -m pip install --upgrade pip
-RUN pip install --upgrade --no-cache-dir -r /home/user/CodeBenchGen/requirements_py311.txt
+RUN python -m pip install --upgrade pip
+RUN pip install --no-cache-dir -r /home/user/CodeBenchGen/requirements_py38.txt
 
 # override default image starting point (otherwise it starts from python)
 CMD /bin/bash

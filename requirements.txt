@@ -1,9 +1,4 @@
-numpy
-tqdm
-tensorflow
-torch==2.1.2
-transformers==4.28.1
-pillow
-pandas
-coverage
-future
+transformers==4.21.0
+tree_sitter==0.20.1
+sacrebleu=="1.2.11
+openai==1.54.4

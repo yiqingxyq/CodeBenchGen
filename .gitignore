@@ -4,6 +4,8 @@ __pycache__/
 *$py.class
 
 # data and model ckpts 
+data/repos 
+data/*/*.json
 # third_party/
 node_modules/
 # resource/

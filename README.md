@@ -48,7 +48,7 @@ source setup.sh
 ### External Libraries
 If you need to build your own benchmark using CodeBenchGen, you'll need to install the following packages:
 ```
-pip install transformers==4.21.0 tree_sitter==0.20.1 sacrebleu=="1.2.11"
+pip install -r requirements.txt
 ```
 
 <a id="environment-docker"></a>

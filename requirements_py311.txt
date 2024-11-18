@@ -1,0 +1,9 @@
+torch==2.5.1
+transformers==4.46.2
+tensorflow==2.18.0
+opencv-python
+tqdm
+pillow
+pandas
+coverage
+future
