@@ -10,8 +10,8 @@ config_path = current_dir / "config.yml"
 with open(config_path, "r") as file:
     config: dict[str, str] = yaml.safe_load(file)  # type: ignore
 
-if os.environ["HOME_DIR"] is not None:
-    HOME_DIR = Path(os.environ["HOME_DIR"])
+if os.environ["R2E_HOME_DIR"] is not None:
+    HOME_DIR = Path(os.environ["R2E_HOME_DIR"])
 else:
     HOME_DIR = Path(os.path.expanduser("~"))
 R2E_BUCKET_DIR = HOME_DIR / config["r2e_bucket_dir"]

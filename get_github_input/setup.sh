@@ -1,1 +1,1 @@
-export HOME_DIR=$PWD
+export R2E_HOME_DIR=$PWD
