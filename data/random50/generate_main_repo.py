@@ -1,7 +1,5 @@
 import json
 from tqdm import tqdm 
-import argparse
-
 import os
 import re
 import time
