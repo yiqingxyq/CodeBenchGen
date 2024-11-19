@@ -10,7 +10,7 @@ export CACHE_DIR=${HOME_DIR}/"tmp"
 
 # data
 export dataset_generation_DIR=${STORAGE_DIR}"/random50"
-export final_dataset_DIR=${STORAGE_DIR}"/random50"
+export final_dataset_DIR=${CODE_DIR}"/ExecCSN_dataset"
 
 # docker
 export docker_HOME_DIR="/home/user"
