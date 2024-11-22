@@ -1,4 +1,4 @@
-sandbox_check_prompt_template = f"""\
+sandbox_check_prompt_template_V0 = f"""\
 Instructions:
 - We revised a python function called __FUNCTION_NAME__ so it can be directly executed in an isolated environment.
 - You are given the ORIGINAL FUNCTION and the CODE containing the REVISED FUNCTION.
@@ -19,6 +19,37 @@ Your answer should follow the format below:
 ```
 REASONING: Your reasoning,
 ANSWER: "same", "yes" or "no".
+```
+
+Do NOT include other formatting.
+
+SOLUTION:
+"""
+
+sandbox_check_prompt_template = f"""\
+Instructions:
+- We revised a python function called __FUNCTION_NAME__ so it can be directly executed in an isolated environment.
+- You are given the ORIGINAL FUNCTION and the CODE containing the REVISED FUNCTION.
+- Your task is to compare the functionality of the ORIGINAL FUNCTION and the REVISED FUNCTION.
+- If the functionality of the REVISED FUNCTION is the same as the ORIGINAL FUNCTION, output "same" as your answer.
+- If the two functions' functionalities have minor differences, output "minor" as your answer, where minor differences may include one or more of the following:
+    (1) sanity checks of the input arguments, 
+    (2) default arguments of function calls, such as revising `run(command, capture_output=True)` to `run(command, shell=True, text=True)`,
+    (3) difference in print statements or logging information.
+- Otherwise, if the functionality of the REVISED FUNCTION has any major differences that do not belong to any of the above 3 categories, output "major".
+
+- Provide your reasoning and the answer under "SOLUTION".
+
+ORIGINAL FUNCTION:
+__ORIG_FUNC__
+
+CODE containing the REVISED FUNCTION:
+__NEW_CODE__
+
+Your answer should follow the format below:
+```
+REASONING: Your reasoning,
+ANSWER: "same", "minor", or "major".
 ```
 
 Do NOT include other formatting.

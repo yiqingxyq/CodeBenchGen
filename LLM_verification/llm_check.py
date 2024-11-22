@@ -28,7 +28,8 @@ def extract_answer(text):
     reasoning = text.split("ANSWER")[0].strip()
     answer_text = text.split("ANSWER")[-1].lower().strip()
     
-    label2pos = {label:answer_text.find(label) for label in ["same", "yes", "no"]}
+    label2pos = {label:answer_text.find(label) for label in ["same", "yes", "no", "minor", "major"]} 
+    # label2pos = {label:answer_text.find(label) for label in ["same", "minor", "major"]}
     label2pos = {k:v for k,v in label2pos.items() if v>0}
     answer = min(label2pos, key=lambda k:label2pos[k]) if label2pos else None
     
@@ -49,6 +50,7 @@ if __name__ == "__main__":
     
     compute_count = 0
     successful_count = 0
+    almost_successful_count = 0
     same_count = 0
     for idx,func_dict in enumerate(tqdm(examples)):
         
@@ -76,8 +78,9 @@ if __name__ == "__main__":
         if answer:
             func_dict[saved_key] = {"reasoning": reasoning, "answer": answer}
             
-            same_count += answer == "same"
+            same_count += answer in ["same"]
             successful_count += answer in ["same", "yes"]
+            almost_successful_count += answer in ["same", "yes", "minor"]
             compute_count += 1
         else:
             print("Generation error! Cannot extract answer")
@@ -85,8 +88,8 @@ if __name__ == "__main__":
         
         if compute_count % 10 == 0 and compute_count > 0:
             print(f'Saving {compute_count}/{(idx+1)} examples to file..')
-            print(f"{same_count}/{successful_count}/{compute_count} examples have answer 'yes'")
+            print(f"{same_count}/{successful_count}/{almost_successful_count}/{compute_count} examples are successful")
             json.dump(examples, open(output_file, 'w'), indent=4)
             
-    print(f"{same_count}/{successful_count}/{compute_count} examples have answer 'yes'")
+    print(f"{same_count}/{successful_count}/{almost_successful_count}/{compute_count} examples are successful")
     json.dump(examples, open(output_file, 'w'), indent=4)
