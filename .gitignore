@@ -11,4 +11,10 @@ data/*/*.json
 node_modules/
 # resource/
 
+ExecCSN_dataset/
+
+# human study
+LLM_verification/*.json
+*/*.ipynb
+
 package-lock.json
