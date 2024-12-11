@@ -15,7 +15,7 @@ EXEC_FILE_PREFIX = os.path.join(CACHE_DIR, "execution_test")
 import sys 
 sys.path.insert(0,CODE_DIR)
 from CodeBenchGen.utils import *
-from CodeBenchGen.exec_utils import *
+from CodeBenchGen.utils_exec import *
 
 
 if __name__ == "__main__":

@@ -15,7 +15,7 @@ docker_dataset_generation_DIR = os.environ.get("docker_dataset_generation_DIR")
 import sys 
 sys.path.insert(0,CODE_DIR)
 from CodeBenchGen.utils import *
-from CodeBenchGen.exec_utils import *
+from CodeBenchGen.utils_exec import *
 
 
 if __name__ == "__main__":
