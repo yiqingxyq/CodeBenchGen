@@ -8,6 +8,7 @@ import argparse
 CODE_DIR = os.environ.get("CODE_DIR")
 CACHE_DIR = os.environ.get("CACHE_DIR")
 final_dataset_DIR = os.environ.get("final_dataset_DIR")
+dataset_generation_DIR = os.environ.get("dataset_generation_DIR")
 
 import sys 
 sys.path.insert(0,CODE_DIR)
@@ -39,12 +40,17 @@ def extract_answer(text):
 if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
+    parser.add_argument("--dataset", type=str, required=True, choices=["ExecCSN", "random50"])
     parser.add_argument("--input_file", type=str, default='test_set_final_round3.json')
     parser.add_argument("--mode", type=str, choices=["sandbox", "test", "instruction"], required=True)
     args = parser.parse_args()
     
-    input_file = os.path.join(final_dataset_DIR, args.input_file)
-    output_file = os.path.join(final_dataset_DIR, f"{args.mode}_check_{args.input_file}")
+    if args.dataset == "random50":
+        input_file = os.path.join(dataset_generation_DIR, args.input_file)
+        output_file = os.path.join(dataset_generation_DIR, f"{args.mode}_check_{args.input_file}")
+    else:
+        input_file = os.path.join(final_dataset_DIR, args.input_file)
+        output_file = os.path.join(final_dataset_DIR, f"{args.mode}_check_{args.input_file}")
     
     examples = json.load(open(input_file, 'r'))
     
@@ -54,10 +60,14 @@ if __name__ == "__main__":
     same_count = 0
     for idx,func_dict in enumerate(tqdm(examples)):
         
-        code = func_dict["code"]
+        if args.dataset == "random50":
+            code = func_dict["eval_script"]
+        else:
+            code = func_dict["code"]
+            instruction = func_dict["revised_instruction"]
+            
         orig_func = func_dict["orig_func"]
         func_name = func_dict["func_name"]
-        instruction = func_dict["revised_instruction"]
         test_func_name = "test_" + func_name.split(".")[-1]
         
         if args.mode == "sandbox":

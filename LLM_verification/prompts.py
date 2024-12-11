@@ -1,4 +1,4 @@
-sandbox_check_prompt_template_V0 = f"""\
+sandbox_check_prompt_template = f"""\
 Instructions:
 - We revised a python function called __FUNCTION_NAME__ so it can be directly executed in an isolated environment.
 - You are given the ORIGINAL FUNCTION and the CODE containing the REVISED FUNCTION.
@@ -26,7 +26,7 @@ Do NOT include other formatting.
 SOLUTION:
 """
 
-sandbox_check_prompt_template = f"""\
+sandbox_check_prompt_template_MINOR = f"""\
 Instructions:
 - We revised a python function called __FUNCTION_NAME__ so it can be directly executed in an isolated environment.
 - You are given the ORIGINAL FUNCTION and the CODE containing the REVISED FUNCTION.
